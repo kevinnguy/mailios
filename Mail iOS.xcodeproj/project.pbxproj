@@ -24,6 +24,8 @@
 		0A1655091874AF2600C31E06 /* libMailCore-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1655001874AE4F00C31E06 /* libMailCore-ios.a */; };
 		0A16550B1874AF2E00C31E06 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16550A1874AF2E00C31E06 /* Security.framework */; };
 		0A16550D1874AF3500C31E06 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16550C1874AF3500C31E06 /* CFNetwork.framework */; };
+		0A29987F187D449400A67ABC /* SLCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A29987E187D449400A67ABC /* SLCollectionViewCell.xib */; };
+		0A299886187D450100A67ABC /* SLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A299885187D450100A67ABC /* SLCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,9 @@
 		0A1654F51874AE4D00C31E06 /* mailcore2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mailcore2.xcodeproj; path = "../mailcore2/build-mac/mailcore2.xcodeproj"; sourceTree = "<group>"; };
 		0A16550A1874AF2E00C31E06 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0A16550C1874AF3500C31E06 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		0A29987E187D449400A67ABC /* SLCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLCollectionViewCell.xib; sourceTree = "<group>"; };
+		0A299884187D450100A67ABC /* SLCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLCollectionViewCell.h; sourceTree = "<group>"; };
+		0A299885187D450100A67ABC /* SLCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +176,9 @@
 				0A1654D21874AC7600C31E06 /* Main.storyboard */,
 				0A1654D51874AC7600C31E06 /* SLViewController.h */,
 				0A1654D61874AC7600C31E06 /* SLViewController.m */,
+				0A29987E187D449400A67ABC /* SLCollectionViewCell.xib */,
+				0A299884187D450100A67ABC /* SLCollectionViewCell.h */,
+				0A299885187D450100A67ABC /* SLCollectionViewCell.m */,
 				0A1654D81874AC7600C31E06 /* Images.xcassets */,
 				0A1654C71874AC7600C31E06 /* Supporting Files */,
 			);
@@ -343,6 +351,7 @@
 				0A1654D91874AC7600C31E06 /* Images.xcassets in Resources */,
 				0A1654CB1874AC7600C31E06 /* InfoPlist.strings in Resources */,
 				0A1654D41874AC7600C31E06 /* Main.storyboard in Resources */,
+				0A29987F187D449400A67ABC /* SLCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +373,7 @@
 				0A1654CD1874AC7600C31E06 /* main.m in Sources */,
 				0A1654D71874AC7600C31E06 /* SLViewController.m in Sources */,
 				0A1654D11874AC7600C31E06 /* SLAppDelegate.m in Sources */,
+				0A299886187D450100A67ABC /* SLCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
