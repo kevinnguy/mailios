@@ -24,6 +24,12 @@
 		0A1655091874AF2600C31E06 /* libMailCore-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1655001874AE4F00C31E06 /* libMailCore-ios.a */; };
 		0A16550B1874AF2E00C31E06 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16550A1874AF2E00C31E06 /* Security.framework */; };
 		0A16550D1874AF3500C31E06 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16550C1874AF3500C31E06 /* CFNetwork.framework */; };
+		0A1FDFE91888BC4A009BB9AD /* SLMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FDFE81888BC4A009BB9AD /* SLMessageViewController.m */; };
+		0A1FDFEF1888C186009BB9AD /* SLMessageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1FDFEE1888C186009BB9AD /* SLMessageHeaderView.xib */; };
+		0A1FDFF21888C23A009BB9AD /* SLMessageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FDFF11888C23A009BB9AD /* SLMessageHeaderView.m */; };
+		0A1FDFF51888C649009BB9AD /* MCOMessageView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FDFF41888C649009BB9AD /* MCOMessageView.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0A1FDFF81888C827009BB9AD /* SLIMAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FDFF71888C827009BB9AD /* SLIMAPManager.m */; };
+		0A1FE0001888D3A4009BB9AD /* MCOCIDURLProtocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FDFFF1888D3A4009BB9AD /* MCOCIDURLProtocol.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0A29987F187D449400A67ABC /* SLCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A29987E187D449400A67ABC /* SLCollectionViewCell.xib */; };
 		0A299886187D450100A67ABC /* SLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A299885187D450100A67ABC /* SLCollectionViewCell.m */; };
 /* End PBXBuildFile section */
@@ -103,6 +109,17 @@
 		0A1654F51874AE4D00C31E06 /* mailcore2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mailcore2.xcodeproj; path = "../mailcore2/build-mac/mailcore2.xcodeproj"; sourceTree = "<group>"; };
 		0A16550A1874AF2E00C31E06 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0A16550C1874AF3500C31E06 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		0A1FDFE71888BC4A009BB9AD /* SLMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLMessageViewController.h; sourceTree = "<group>"; };
+		0A1FDFE81888BC4A009BB9AD /* SLMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLMessageViewController.m; sourceTree = "<group>"; };
+		0A1FDFEE1888C186009BB9AD /* SLMessageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLMessageHeaderView.xib; sourceTree = "<group>"; };
+		0A1FDFF01888C23A009BB9AD /* SLMessageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLMessageHeaderView.h; sourceTree = "<group>"; };
+		0A1FDFF11888C23A009BB9AD /* SLMessageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLMessageHeaderView.m; sourceTree = "<group>"; };
+		0A1FDFF31888C649009BB9AD /* MCOMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCOMessageView.h; sourceTree = "<group>"; };
+		0A1FDFF41888C649009BB9AD /* MCOMessageView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MCOMessageView.mm; sourceTree = "<group>"; };
+		0A1FDFF61888C827009BB9AD /* SLIMAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLIMAPManager.h; sourceTree = "<group>"; };
+		0A1FDFF71888C827009BB9AD /* SLIMAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLIMAPManager.m; sourceTree = "<group>"; };
+		0A1FDFFE1888D3A4009BB9AD /* MCOCIDURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCOCIDURLProtocol.h; sourceTree = "<group>"; };
+		0A1FDFFF1888D3A4009BB9AD /* MCOCIDURLProtocol.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MCOCIDURLProtocol.mm; sourceTree = "<group>"; };
 		0A29987E187D449400A67ABC /* SLCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLCollectionViewCell.xib; sourceTree = "<group>"; };
 		0A299884187D450100A67ABC /* SLCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLCollectionViewCell.h; sourceTree = "<group>"; };
 		0A299885187D450100A67ABC /* SLCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLCollectionViewCell.m; sourceTree = "<group>"; };
@@ -174,12 +191,11 @@
 				0A1654CF1874AC7600C31E06 /* SLAppDelegate.h */,
 				0A1654D01874AC7600C31E06 /* SLAppDelegate.m */,
 				0A1654D21874AC7600C31E06 /* Main.storyboard */,
-				0A1654D51874AC7600C31E06 /* SLViewController.h */,
-				0A1654D61874AC7600C31E06 /* SLViewController.m */,
-				0A29987E187D449400A67ABC /* SLCollectionViewCell.xib */,
-				0A299884187D450100A67ABC /* SLCollectionViewCell.h */,
-				0A299885187D450100A67ABC /* SLCollectionViewCell.m */,
 				0A1654D81874AC7600C31E06 /* Images.xcassets */,
+				0A1FDFFB1888D354009BB9AD /* Model */,
+				0A1FDFFA1888D33A009BB9AD /* Views */,
+				0A1FDFF91888D322009BB9AD /* Controllers */,
+				0A1FDFFC1888D35F009BB9AD /* MailCore Helpers */,
 				0A1654C71874AC7600C31E06 /* Supporting Files */,
 			);
 			path = "Mail iOS";
@@ -224,6 +240,50 @@
 				0A1655061874AE4F00C31E06 /* MailCore.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0A1FDFF91888D322009BB9AD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0A1654D51874AC7600C31E06 /* SLViewController.h */,
+				0A1654D61874AC7600C31E06 /* SLViewController.m */,
+				0A1FDFE71888BC4A009BB9AD /* SLMessageViewController.h */,
+				0A1FDFE81888BC4A009BB9AD /* SLMessageViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		0A1FDFFA1888D33A009BB9AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A29987E187D449400A67ABC /* SLCollectionViewCell.xib */,
+				0A299884187D450100A67ABC /* SLCollectionViewCell.h */,
+				0A299885187D450100A67ABC /* SLCollectionViewCell.m */,
+				0A1FDFEE1888C186009BB9AD /* SLMessageHeaderView.xib */,
+				0A1FDFF01888C23A009BB9AD /* SLMessageHeaderView.h */,
+				0A1FDFF11888C23A009BB9AD /* SLMessageHeaderView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		0A1FDFFB1888D354009BB9AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A1FDFF61888C827009BB9AD /* SLIMAPManager.h */,
+				0A1FDFF71888C827009BB9AD /* SLIMAPManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0A1FDFFC1888D35F009BB9AD /* MailCore Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0A1FDFFE1888D3A4009BB9AD /* MCOCIDURLProtocol.h */,
+				0A1FDFFF1888D3A4009BB9AD /* MCOCIDURLProtocol.mm */,
+				0A1FDFF31888C649009BB9AD /* MCOMessageView.h */,
+				0A1FDFF41888C649009BB9AD /* MCOMessageView.mm */,
+			);
+			name = "MailCore Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +411,7 @@
 				0A1654D91874AC7600C31E06 /* Images.xcassets in Resources */,
 				0A1654CB1874AC7600C31E06 /* InfoPlist.strings in Resources */,
 				0A1654D41874AC7600C31E06 /* Main.storyboard in Resources */,
+				0A1FDFEF1888C186009BB9AD /* SLMessageHeaderView.xib in Resources */,
 				0A29987F187D449400A67ABC /* SLCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,9 +432,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A1654CD1874AC7600C31E06 /* main.m in Sources */,
+				0A1FDFF51888C649009BB9AD /* MCOMessageView.mm in Sources */,
 				0A1654D71874AC7600C31E06 /* SLViewController.m in Sources */,
+				0A1FE0001888D3A4009BB9AD /* MCOCIDURLProtocol.mm in Sources */,
+				0A1FDFF81888C827009BB9AD /* SLIMAPManager.m in Sources */,
+				0A1FDFF21888C23A009BB9AD /* SLMessageHeaderView.m in Sources */,
 				0A1654D11874AC7600C31E06 /* SLAppDelegate.m in Sources */,
 				0A299886187D450100A67ABC /* SLCollectionViewCell.m in Sources */,
+				0A1FDFE91888BC4A009BB9AD /* SLMessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
