@@ -71,7 +71,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVv-9u-fzl" userLabel="Message Title">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVv-9u-fzl" userLabel="Message Title View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -98,6 +98,7 @@
                     <navigationItem key="navigationItem" id="sao-0e-xOX"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="messageTitleLabel" destination="LEX-5v-SD2" id="wgS-EF-ZIx"/>
                         <outlet property="messageTitleView" destination="KVv-9u-fzl" id="Pff-2L-ge1"/>
                         <outlet property="messageView" destination="Oey-Da-kbD" id="Fht-f8-apC"/>
                     </connections>

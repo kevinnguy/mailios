@@ -15,7 +15,10 @@
 @implementation SLMessageViewController
 
 - (void)viewDidLoad {
-    
+    [self setupTitleView];
 }
 
+- (void)setupTitleView {
+    self.messageTitleLabel.text = self.message.header.subject;
+}
 @end

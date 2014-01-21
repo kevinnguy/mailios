@@ -39,6 +39,7 @@
     [SLIMAPManager sharedManager];
     [[SLIMAPManager sharedManager] setupSharedManagerWithHostname:HOSTNAME port:PORT];
     [SLIMAPManager sharedManager].delegate = self;
+
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter email and password" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Login", nil];
     alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
     [alertView show];

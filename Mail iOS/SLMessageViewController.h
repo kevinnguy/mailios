@@ -15,6 +15,7 @@
 @property (nonatomic, strong) MCOIMAPMessage *message;
 
 @property (weak, nonatomic) IBOutlet UIView *messageTitleView;
+@property (weak, nonatomic) IBOutlet UILabel *messageTitleLabel;
 @property (weak, nonatomic) IBOutlet MCOMessageView *messageView;
 
 
