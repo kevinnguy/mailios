@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "SLSender.h"
+
 @protocol SLIMAPManagerDelegate <NSObject>
 
 - (void)didGetMessages:(NSArray *)messages;
@@ -18,7 +20,9 @@
 @property (nonatomic, assign) id<SLIMAPManagerDelegate> delegate;
 @property (nonatomic, strong) MCOIMAPSession *session;
 @property (nonatomic, strong) MCOIMAPMessage *message;
-@property (nonatomic, strong) NSMutableArray *userFolders;
+@property (nonatomic, strong) NSMutableArray *userFoldersMutableArray;
+@property (nonatomic, strong) NSMutableDictionary *sendersMutableDictionary;
+@property (nonatomic, strong) NSMutableSet *sendersNamesMutableSet;
 @property (nonatomic, assign) MCOIMAPMessagesRequestKind messagesRequestKind;
 @property (nonatomic, strong) MCOIMAPFetchMessagesOperation *fetchMessagesOperation;
 
@@ -26,5 +30,6 @@
 - (void)setupSharedManagerWithHostname:(NSString *)hostname port:(NSInteger)port;
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;
 - (void)getMessages;
+- (void)sortMessagesBySender:(NSArray *)messages;
 
 @end

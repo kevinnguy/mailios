@@ -168,12 +168,32 @@
     NSString *username = [alertView textFieldAtIndex:0].text;
     NSString *password = [alertView textFieldAtIndex:1].text;
     [[SLIMAPManager sharedManager] loginWithUsername:username password:password];
+    
 }
 
 #pragma mark - SLIMAPManagerDelegate
 - (void)didGetMessages:(NSArray *)messages {
-    self.message = messages.firstObject;
-    [self performSegueWithIdentifier:MESSAGE_SEGUE sender:self];
+    // Sort messages
+    [[SLIMAPManager sharedManager] sortMessagesBySender:messages];
+    
+    // Get senders from dictionary
+    NSArray *senders = [[SLIMAPManager sharedManager].sendersMutableDictionary allValues];
+    
+    for (SLSender *sender in senders) {
+        int unreadCount = sender.messages.count;
+        for (MCOIMAPMessage *message in sender.messages) {
+            if (message.flags == MCOMessageFlagSeen) {
+                unreadCount--;
+            }
+        }
+
+        NSLog(@"Sender: %40@  Messages: %d Unread:%d", sender.name, sender.messages.count, unreadCount);
+        
+        // Mark message if sender is NYTimes.com
+        if ([sender.name isEqualToString:@"NYTimes.com"]) {
+            
+        }
+    }
 }
 
 #pragma mark - Collection view delegate

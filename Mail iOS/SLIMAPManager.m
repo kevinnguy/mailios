@@ -26,7 +26,7 @@ static SLIMAPManager *sharedManager = nil;
     self.session.hostname = hostname;
     self.session.port = port;
     self.session.connectionType = MCOConnectionTypeTLS;  /** Encrypted connection using TLS/SSL.*/
-    self.userFolders = [@[@"INBOX"] mutableCopy];
+    self.userFoldersMutableArray = [@[@"INBOX"] mutableCopy];
     self.messagesRequestKind = (MCOIMAPMessagesRequestKind)
 	(MCOIMAPMessagesRequestKindExtraHeaders | MCOIMAPMessagesRequestKindFlags | MCOIMAPMessagesRequestKindFullHeaders | MCOIMAPMessagesRequestKindGmailLabels | MCOIMAPMessagesRequestKindGmailMessageID | MCOIMAPMessagesRequestKindGmailThreadID | MCOIMAPMessagesRequestKindHeaders | MCOIMAPMessagesRequestKindHeaderSubject | MCOIMAPMessagesRequestKindInternalDate | MCOIMAPMessagesRequestKindSize | MCOIMAPMessagesRequestKindStructure | MCOIMAPMessagesRequestKindUid);
 }
@@ -36,14 +36,14 @@ static SLIMAPManager *sharedManager = nil;
     self.session.password = password;
     
     MCOIndexSet *uids = [MCOIndexSet indexSetWithRange:MCORangeMake(1, UINT64_MAX)]; // Get all messages
-    self.fetchMessagesOperation = [self.session fetchMessagesByUIDOperationWithFolder:self.userFolders.firstObject requestKind:self.messagesRequestKind uids:uids];
+    self.fetchMessagesOperation = [self.session fetchMessagesByUIDOperationWithFolder:self.userFoldersMutableArray.firstObject requestKind:self.messagesRequestKind uids:uids];
     [self getMessages];
 }
 
 - (void)getMessages {
-    [self.fetchMessagesOperation setProgress:^(unsigned int progress) {
-        NSLog(@"Progress: %u of total messages", progress);
-    }];
+//    [self.fetchMessagesOperation setProgress:^(unsigned int progress) {
+//        NSLog(@"Progress: %u of total messages", progress);
+//    }];
     
     __weak SLIMAPManager *weakSelf = self;
     [self.fetchMessagesOperation start:^(NSError * error, NSArray * messages, MCOIndexSet * vanishedMessages) {
@@ -77,5 +77,33 @@ static SLIMAPManager *sharedManager = nil;
             //            message.mainPart;
         }
     }];
+}
+
+- (void)sortMessagesBySender:(NSArray *)messages {
+    if (!self.sendersMutableDictionary) {
+        self.sendersMutableDictionary = [NSMutableDictionary new];
+    }
+    
+    if (!self.sendersNamesMutableSet) {
+        self.sendersNamesMutableSet = [NSMutableSet new];
+    }
+    
+    for (MCOAbstractMessage *message in messages) {
+        // Example: Bank of America
+        NSString *displayName = message.header.from.displayName;
+        if (!displayName) {
+            // Example: alert@bankofamerica.com
+            displayName = message.header.from.mailbox;
+        }
+        
+        if ([self.sendersNamesMutableSet containsObject:displayName]) {
+            SLSender *sender = [self.sendersMutableDictionary objectForKey:displayName];
+            [sender.messages addObject:message];
+        } else {
+            [self.sendersNamesMutableSet addObject:displayName];
+            SLSender *sender = [[SLSender alloc] initWithName:displayName message:message];
+            [self.sendersMutableDictionary setObject:sender forKey:displayName];
+        }
+    }
 }
 @end
