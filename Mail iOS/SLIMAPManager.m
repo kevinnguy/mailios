@@ -8,6 +8,8 @@
 
 #import "SLIMAPManager.h"
 
+#import <GTMOAuth2Authentication.h>
+
 @implementation SLIMAPManager
 
 static SLIMAPManager *sharedManager = nil;
@@ -31,9 +33,10 @@ static SLIMAPManager *sharedManager = nil;
 	(MCOIMAPMessagesRequestKindExtraHeaders | MCOIMAPMessagesRequestKindFlags | MCOIMAPMessagesRequestKindFullHeaders | MCOIMAPMessagesRequestKindGmailLabels | MCOIMAPMessagesRequestKindGmailMessageID | MCOIMAPMessagesRequestKindGmailThreadID | MCOIMAPMessagesRequestKindHeaders | MCOIMAPMessagesRequestKindHeaderSubject | MCOIMAPMessagesRequestKindInternalDate | MCOIMAPMessagesRequestKindSize | MCOIMAPMessagesRequestKindStructure | MCOIMAPMessagesRequestKindUid);
 }
 
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password {
+- (void)loginWithUsername:(NSString *)username authToken:(NSString *)authToken {
     self.session.username = username;
-    self.session.password = password;
+    self.session.OAuth2Token = authToken;
+    self.session.authType = MCOAuthTypeXOAuth2;
     
     MCOIndexSet *uids = [MCOIndexSet indexSetWithRange:MCORangeMake(1, UINT64_MAX)]; // Get all messages
     self.fetchMessagesOperation = [self.session fetchMessagesByUIDOperationWithFolder:self.userFoldersMutableArray.firstObject requestKind:self.messagesRequestKind uids:uids];
@@ -105,5 +108,27 @@ static SLIMAPManager *sharedManager = nil;
             [self.sendersMutableDictionary setObject:sender forKey:displayName];
         }
     }
+}
+
+- (void)markMessages:(NSArray *)messages read:(BOOL)readFlag {
+    MCOIndexSet *uids = [[MCOIndexSet alloc] init];
+    for (MCOIMAPMessage *message in messages) {
+        if ((message.flags != MCOMessageFlagSeen && readFlag) || (message.flags == MCOMessageFlagSeen && !readFlag)) {
+            [uids addIndex:message.uid];
+        }
+    }
+    
+    MCOIMAPOperation *operation;
+    if (readFlag) {
+        operation = [self.session storeFlagsOperationWithFolder:@"INBOX" uids:uids kind:MCOIMAPStoreFlagsRequestKindAdd flags:MCOMessageFlagSeen];
+    } else {
+        operation = [self.session storeFlagsOperationWithFolder:@"INBOX" uids:uids kind:MCOIMAPStoreFlagsRequestKindRemove flags:MCOMessageFlagSeen];
+    }
+    
+    [operation start:^(NSError *error) {
+        if (error) {
+            NSLog(@"Could not mark messages: %@", error.description);
+        }
+    }];
 }
 @end

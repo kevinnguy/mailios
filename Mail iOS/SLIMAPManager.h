@@ -28,8 +28,9 @@
 
 + (SLIMAPManager *)sharedManager;
 - (void)setupSharedManagerWithHostname:(NSString *)hostname port:(NSInteger)port;
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password;
+- (void)loginWithUsername:(NSString *)username authToken:(NSString *)authToken;
 - (void)getMessages;
 - (void)sortMessagesBySender:(NSArray *)messages;
+- (void)markMessages:(NSArray *)messages read:(BOOL)readFlag;
 
 @end

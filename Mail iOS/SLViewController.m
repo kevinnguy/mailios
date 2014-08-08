@@ -11,6 +11,7 @@
 #import "SLCollectionViewCell.h"
 
 #import "SLIMAPManager.h"
+#import <GTMOAuth2ViewControllerTouch.h>
 
 @interface SLViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecognizerDelegate, UIAlertViewDelegate, SLIMAPManagerDelegate>
 @property (nonatomic, strong) UIView *popUpView;
@@ -27,22 +28,18 @@
 
 #define MESSAGE_SEGUE @"MessageSegue"
 
+static NSString *const kClientId = @"293978694811-ajeg5v894043t1j2gvntv4klka86353r.apps.googleusercontent.com";
+static NSString *const kClientSecret = @"Bq1FxqN61Rd_TB6UECyPIWXi";
+static NSString *const kOAuthKeychain = @"Sail OAuth Google";
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupCollectionView];
     [self setupPopUpView];
     [self setupIMAP];
-}
-
-- (void)setupIMAP {
-    [SLIMAPManager sharedManager];
-    [[SLIMAPManager sharedManager] setupSharedManagerWithHostname:HOSTNAME port:PORT];
-    [SLIMAPManager sharedManager].delegate = self;
-
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter email and password" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Login", nil];
-    alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-    [alertView show];
+    [self setupOAuth];
 }
 
 - (void)setupCollectionView {
@@ -94,6 +91,37 @@
     self.panGesture.delaysTouchesBegan = YES;
 //    [self.panGesture requireGestureRecognizerToFail:self.longPressGesture];
     [self.popUpView addGestureRecognizer:self.panGesture];
+}
+
+- (void)setupIMAP {
+    [SLIMAPManager sharedManager];
+    [[SLIMAPManager sharedManager] setupSharedManagerWithHostname:HOSTNAME port:PORT];
+    [SLIMAPManager sharedManager].delegate = self;
+}
+
+- (void)setupOAuth {
+    GTMOAuth2Authentication * auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kOAuthKeychain
+                                                                                           clientID:kClientId
+                                                                                       clientSecret:kClientSecret];
+    
+    if (auth.refreshToken) {
+        [auth beginTokenFetchWithDelegate:self didFinishSelector:@selector(auth:finishedRefreshWithFetcher:error:)];
+    } else {
+        // Show OAuth view controller
+        SLIMAPManager * __weak weakManager = [SLIMAPManager sharedManager];
+        GTMOAuth2ViewControllerTouch *viewController = [GTMOAuth2ViewControllerTouch controllerWithScope:@"https://mail.google.com/"
+                                                                                                clientID:kClientId
+                                                                                            clientSecret:kClientSecret
+                                                                                        keychainItemName:kOAuthKeychain
+                                                                                       completionHandler:^(GTMOAuth2ViewControllerTouch *viewController, GTMOAuth2Authentication *retrievedAuth, NSError *error) {
+                                                                                           [weakManager loginWithUsername:auth.userEmail authToken:auth.accessToken];
+                                                                                       }];
+        
+    }
+}
+
+- (void)auth:(GTMOAuth2Authentication *)auth finishedRefreshWithFetcher:(GTMHTTPFetcher *)fetcher error:(NSError *)error {
+    [[SLIMAPManager sharedManager] loginWithUsername:auth.userEmail authToken:auth.accessToken];
 }
 
 - (void)longPressed:(UILongPressGestureRecognizer *)sender {
@@ -163,14 +191,6 @@
     }
 }
 
-#pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *username = [alertView textFieldAtIndex:0].text;
-    NSString *password = [alertView textFieldAtIndex:1].text;
-    [[SLIMAPManager sharedManager] loginWithUsername:username password:password];
-    
-}
-
 #pragma mark - SLIMAPManagerDelegate
 - (void)didGetMessages:(NSArray *)messages {
     // Sort messages
@@ -191,7 +211,7 @@
         
         // Mark message if sender is NYTimes.com
         if ([sender.name isEqualToString:@"NYTimes.com"]) {
-            
+            [[SLIMAPManager sharedManager] markMessages:sender.messages read:YES];
         }
     }
 }
