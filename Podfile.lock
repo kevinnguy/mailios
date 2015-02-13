@@ -15,8 +15,7 @@ PODS:
   - gtm-oauth2/Core/Touch (0.0.3):
     - GTMHTTPFetcher
     - SBJson (~> 3.2)
-  - GTMHTTPFetcher (0.0.2):
-    - SBJson (~> 3.2)
+  - GTMHTTPFetcher (1.141)
   - SBJson (3.2)
 
 DEPENDENCIES:
@@ -24,9 +23,9 @@ DEPENDENCIES:
   - gtm-oauth2 (~> 0.0.3)
 
 SPEC CHECKSUMS:
-  APParallaxHeader: 860acb07f0339095b72d67a3947b5747d597dd16
-  gtm-oauth2: 6528b10a61eb9b6710f6277341e2926371a12c15
-  GTMHTTPFetcher: df09cf49e95d471d9f321a8eea3d1c22bc45547e
-  SBJson: abc2bf2baef456d5dae213f9826fe2b6fdf19861
+  APParallaxHeader: 266806ff19b9ed3fa9d75b3678fb0b031cb14cbe
+  gtm-oauth2: 1fdab6672d66a3a8a0382669447399c276e45356
+  GTMHTTPFetcher: 0baba9b6c0f9cf6d1d612b310220032925a5de88
+  SBJson: 72d7da8a5bf6c236e87194abb10ac573a8bccbef
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.34.4
